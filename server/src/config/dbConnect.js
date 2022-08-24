@@ -6,6 +6,8 @@ const dbConnect =  async () => {
         {
             useUnifiedTopology: true,
             useNewUrlParser: true,
+
+            autoIndex: true, //make this also true
         });
         console.log(`DB connected Successfully`);
     } catch (error) {
