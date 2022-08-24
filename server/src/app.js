@@ -1,6 +1,6 @@
 const express = require("express");
 const dbConnect = require("./config/dbConnect");
-const { errorHandler } = require("./middlewares/errorMiddleware");
+const { errorHandler, notFound } = require("./middlewares/errorMiddleware");
 const userRoute = require("./routes/user/usersRoute");
 
 const app = express();
@@ -13,11 +13,11 @@ dbConnect();
 app.use(express.json());
 
 //rutes
-app.use('/', userRoute);
+app.use('/api/users', userRoute);
 
-
+//error
+app.use(notFound);
 app.use(errorHandler);
-
 //income
 
 //expenses
