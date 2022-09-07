@@ -3,6 +3,8 @@ const dotenv = require("dotenv")
 const dbConnect = require("./config/dbConnect");
 const { errorHandler, notFound } = require("./middlewares/errorMiddleware");
 const userRoute = require("./routes/user/usersRoute");
+const incomeRoute = require("./routes/income/incomeRoutes");
+const expenseRoute = require("./routes/expenses/ExpenseRoutes");
 
 const app = express();
 
@@ -19,8 +21,14 @@ app.get("/", (req, res) => {
     res.json({ msg: "welcome Expenses tracker API"});
 });
 
-//rutes
+//rutes routes
 app.use('/api/users', userRoute);
+
+//income routes
+app.use('/api/income', incomeRoute);
+
+//expense routes
+app.use('/api/expense', expenseRoute);
 
 //error
 app.use(notFound);
