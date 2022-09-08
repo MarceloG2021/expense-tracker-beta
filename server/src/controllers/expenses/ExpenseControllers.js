@@ -24,7 +24,10 @@ const createExpenseCtrl = expressAsyncHandler(async (req, res) => {
 const fetchAllExpenseCtrl = expressAsyncHandler(async (req, res) => {
     const { page } = req?.query;
     try {
-      const expense = await Expense.paginate({}, {limit:10, page:Number(page) });
+      const expense = await Expense.paginate(
+        {}, 
+        {limit:10, page:Number(page), populate: "user" }
+        );
     res.json(expense);
     } catch (error) {
         res.json(error);
