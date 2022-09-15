@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv")
+const cors = require("cors")
 const dbConnect = require("./config/dbConnect");
 const { errorHandler, notFound } = require("./middlewares/errorMiddleware");
 const userRoute = require("./routes/user/usersRoute");
@@ -16,6 +17,7 @@ dbConnect();
 
 //middlewares
 app.use(express.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
     res.json({ msg: "welcome Expenses tracker API"});
